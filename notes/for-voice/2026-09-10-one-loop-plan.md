@@ -1,100 +1,112 @@
 # Bringing the engine to the One Loop — the plan
 
-Source: `notes/from-voice/2026-09-10-one-loop.md` (the voice session of 2026-09-10) and the
-door's answers #111517, #114007, #114819, #115603. Law 10 throughout: the old shape is
-torn down, not patched. Propose-only until Mike says go on each phase.
+Source: the design, `docs/superpowers/specs/2026-09-10-the-engine-one-loop-design.md`, as
+ruled by Mike 2026-09-10, and phase zero's counts,
+`docs/superpowers/briefs/2026-09-10-one-loop-phase0-measure.md`. Law 10 throughout: the old
+shape is torn down, not patched, and the teardown is not a cost.
 
 Every phase is: engine lead briefs → seeder writes rows (mashgiach, the pipe on
-mashgiach + Edmund) → an executor line, if any, is one named change cleared by Mike →
-tracer proves it on harry with one lot → Astra reads every executor change.
+mashgiach + Edmund) → an executor change is one named unit cleared by Mike → tracer proves
+it on harry with one lot → Astra reads every executor change. DDL is Mike's keyboard.
 
-## Phase 0 — Measure (tracer, read-only, one brief)
+Mike's "engage", 2026-09-10, starts the plan at phase 1.
 
-Numbers the later phases are sized by, none of them known today:
+## Phase 0 — Measure — DONE 2026-09-10
 
-- rung-one misses per gear: mints against binds, from the attempt ledger
-- lands entries carrying a `how` word (what Phase 5 re-mints)
-- the hopper's coverage: which three of six tables it stands on, and the queue rate each
-- compliance rows: expected 0; the drain outcomes it has ever produced
-- ops allocations with no lot (198 seen), ops lines parented across the wall (15 seen)
-- family_uuid / item_uuid population (the half-built square)
-
-Output: one page of counts. No rows written.
+The page of counts is on main. What it sized: phases 1–2 small; 3 the real build, with no
+`held` precedent in 510,722 attempts; 4 is 63 triggers; 5 is nine how words; 6 is the one
+four-figure teardown. Two things it found that the design has since ruled: the family square
+is a self-reference (torn down in 6); 56 lot×marketplace pairs carry two allocations (the
+allocation identity in 2 makes that impossible).
 
 ## Phase 1 — The parent word on the birth row (closes blocker one)
 
 Rows: a vocabulary of three words, `root | strip | twin_of_parent`, and one word on every
-passport's birth entry (the cue rows under the target passport). Listing → root,
-allocation → strip (lot), lot → strip (item), item → strip (form), line → twin_of_parent.
+passport's birth entry. listing → root; allocation → strip (lot); lot → strip (item);
+item → strip (form); line → twin_of_parent.
 
-Executor: one line in `ten_engine.resolve()` — read the word, transport nothing. Mike clears.
+Executor: one line in `ten_engine.resolve()`: read the word, transport nothing.
 
-Proof: a lot dropped into TorBri births its marketplace twin with the tenant root as parent,
-and an inbound listing still births its ops side under the lot. Twinning writes `has_twin`,
-never a parent; birth writes a parent, never an edge.
+Proof: a lot dropped into TorBri births its marketplace listing under the tenant root, and an
+inbound listing still births its allocation under the lot. Twinning writes `has_twin`, never a
+parent; birth writes a parent, never an edge.
 
-## Phase 2 — The birth branch reads the election (closes blocker two)
+## Phase 2 — Election as edges; the allocation's identity (closes blocker two)
 
-Rows: the election ladvar (division × marketplace, up the strip to the form) as the tenant's
-connection rows; a consequence may be a set an executor returns.
+Rows: the qualification edge, division × marketplace, one per pair in the tenant's gear
+(`div_sells_on_mp`), with its bom_type. The consequence on a lot's birth: one allocation per
+qualified marketplace, identity (tenant, lot, marketplace): the lot as parent, the
+marketplace gear's uuid as native_id. Pre-flight for a strip-born entity becomes
+(tenant, parent, e_type, native_id).
 
-Executor: the birth branch reads the election before it births. One line. Mike clears.
+Executor: the birth branch reads the qualification edges and emits one allocation candidate
+per marketplace; the recognition index for strip-born entities gains the parent. One unit.
 
-Proof: a lot in TorBri births only into TorBri's elected gears; MilAntTor's eBay is never
-touched (the test Mike named: don't turn on MilAntTor flooding eBay).
+Proof: a lot in TorBri births exactly its elected allocations and their listings;
+MilAntTor's eBay is never touched; a second run of the same package mints nothing.
 
-Phases 1 and 2 are the Outbound Birth brief, rewritten to this model, and they are the
-first thing built.
+Phases 1 and 2 together are the Outbound Birth rewritten, and the first thing built.
 
-## Phase 3 — The ladder out of resolve; qualify then mint
+## Phase 3 — Pre-flight, the pair rule, is_diff, the scribe (the real build)
 
-Rows: `is_new` becomes a word on the a_type beside `folds` and `lands`; the cue rows
-(identity, code, picture) run as machine jobs, not an executor loop inside resolve.
+The loop's steps 3 to 9 as executors, replacing resolve, is_new and land as they stand:
 
-Executor: `resolve()` is rewritten as a scribe — write the row, draw the edge the row names,
-write the face. Compliance gates the job before any write it would make, births included;
-rung one's miss is a NO at the gate; the held run is the holding pen, in the ledger; the
-release is an observation landing (the machine's reply as a package), never an edit.
+- **pre-flight**: six checks, one per table; `is_new` as a word on the a_type
+  (`identity | label | fold | always`)
+- **the pair rule**: the cross-table, one row per (origin SEA, destination SEA), an ordered
+  verb list (`route | xfm | drop | match | pass`), a missing row is no movement; the_machine's
+  lookup reads it and emits candidate rows
+- **is_diff**: after the fold and the xfm, against the destination's standing
+- **compliance**: standing NOs on the entity, the allocation, the qualification edge; a held
+  row stays in the ledger until a landing clears it
+- **the scribe**: write, edge, face; parent from the word; tenant stamped; run as the job's
+  tenant; every reference resolved through the wall at pre-flight
+- **one package, one job**, ordered by the marketplace's reported clock, serial per tenant
+  and marketplace; a job is done when its own rows are written; consequences are their own
+  jobs stamped with their origin run
 
-Rule written into the design before a line: **one package, one job**; is_new and compliance
-run per row inside it. Without this the loop is an order of magnitude slower.
+This is the largest executor change in the plan and gets the full three-agree. The cue rows
+under each passport become the identity rules the `match` verb reads.
 
-This is the largest executor change of the plan and gets the full three-agree.
+## Phase 4 — The hopper on all six tables, everywhere
 
-## Phase 4 — The hopper on all six tables; the fold before the alert
+DDL: triggers on a_types, avs and bom_types in the 21 gears, and on all six in mailroom,
+ten_routines and ten_registries. Mike's keyboard. Rows: the hopper posts the folded standing;
+a lands row replays from the clock it names, no clock replays nothing; no pair rule points a
+gear's vocabulary at itself.
 
-DDL: triggers on the three vocabulary tables (aspect, value, edge type). Mike's keyboard.
-Rows: the hopper posts the folded standing, not the raw row; an unchanged fold is no landing.
+## Phase 5 — The cross-table takes the how words
 
-## Phase 5 — Compliance as the router; the how word moves to the pair
+Rows only: the nine `how` words on lands entries (eight a_types, four gears) become pair
+rows with ordered verbs; `elect:` on mp_ebay 510 becomes a `route` verb reading phase 2's
+edge. The `how` slot is retired.
 
-Rows only: two lookups. By source (this gear, entity type, aspect → what it owes) and by
-pair (source → destination: the transform and whether allowed). The `how` word leaves the
-lands entry and lives on the pair. Measured in Phase 0; every lands entry carrying a how is
-re-minted. Compliance's first rule is a NO writer, not a gate (Law 8).
+## Phase 6 — The ops teardown (Law 10, Mike's keyboard)
 
-## Phase 6 — The ops allocation under its lot (Law 10 teardown)
+- allocations re-minted under their lots with identity (tenant, lot, marketplace): 72,495
+  rows; 199 with no lot surfaced for Mike; the 56 doubled pairs collapse to one each
+- the 15 lines parented across the wall re-minted under the twin of their order, after
+  Mike's mint-or-reparent ruling on the five eBay orders with no ops twin
+- the 43,366 `lot_has_allocation` edges whose child is not an ops allocation: measured and
+  ruled before the re-mint
+- `family_uuid` and `item_uuid` dropped from ops_com.entity and ops_cat.entity
+- tenant_uuid stamped on the tenant-scoped rows that carry none: 60,941 mailroom calls and
+  1,466 pallets, 372 ops_media images, 64 allocations
 
-The ops allocation's parent moves from the tenant root to the lot: ~72,000 rows re-minted,
-198 with no lot surfaced for Mike, 15 cross-wall lines re-minted under the twin of their
-order. family_uuid / item_uuid: teardown or the square's seed, ruled first. Mike's keyboard.
+## Phase 7 — Land everything
 
-## Phase 7 — Land everything; the replay bound
-
-Rows: an aspect with no home is minted as an empty a_type (label, entity type, dtype; folds
-null, no lands) at unwrap. The replay bound is a row: how far back a new lands entry replays.
-Backfill is then the hopper doing its job.
+Rows: an aspect with no home is minted as an empty a_type at unwrap (label, entity type,
+dtype; folds null, no lands); receive() stops striking on a missing a_type. Backfill is then a
+lands row and the hopper's replay.
 
 ## Order
 
-0 now. 1 and 2 next, together, as the Outbound Birth rewritten. 3 after 1–2 are proved on
-one lot. 4 and 5 after 3. 6 and 7 when 5 stands. Each phase ends with one lot walked by the
-tracer and nothing else in flight.
+1 and 2 now, together. 3 after they are proved on one lot. 4 and 5 after 3. 6 and 7 when 5
+stands. Each phase ends with one lot walked by the tracer and nothing else in flight.
 
-## Open, and whose
+## Mike's, along the way
 
-- the name for the machine (Mike)
-- the replay bound's shape (engine lead proposes, Mike rules)
-- family_uuid / item_uuid: teardown or seed (Mike)
-- the courier's flat_file renderer (the Biblio lane; independent of this plan; one executor
-  line for Mike's clear)
+- the five eBay orders with no ops twin under the 15 cross-wall lines: mint or re-parent
+  (phase 6)
+- every DDL: phases 4 and 6
+- every executor unit: 1, 2, 3
