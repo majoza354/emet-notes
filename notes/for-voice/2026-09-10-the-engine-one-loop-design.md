@@ -70,41 +70,50 @@ One shape, all the way round. A package starts it; every consequence re-enters i
    everything after it run per row inside that job. This is a rule, not an optimisation:
    without it a hundred-line sweep is a hundred jobs.
 
-5. **Fold.** The current standing of that aspect on that entity, read from the stream.
+5. **Fold.** The standing of that aspect on that entity, read from the stream. The fold is
+   what the pair rule reads: a transform that turns an absolute into a delta needs the
+   standing it is measured against. A birth has no fold and skips 5 and 6.
 
-6. **is_diff.** Does the candidate move the standing. No: it is dropped; a confirmation is not
-   a value, and the clock of the confirmation belongs to the arrival, or to a seen aspect
-   whose is_new word is `always`. Yes: it is an event. A birth has no fold and skips 5 and 6.
-
-7. **Compliance.** Before the write: may this row land. Compliance is the cross-table, one
-   row per (origin SEA, destination SEA), and its verbs are the whole of movement:
-   - **pass**: the value lands as it is
-   - **xfm**: through a named transform row, by id, never by name
+6. **Pair rule.** The cross-table, one row per (origin SEA, destination SEA), with an
+   ordered list of verbs, because one movement is often several: elect the destination,
+   transform the value against the fold, match the birth, bind or mint. The verbs:
+   - **route**: which destination gear, by election
+   - **xfm**: through a named transform row, by id, never by name, reading the fold
    - **drop**: this pair never moves
    - **match**: for a birth only, test whether the destination already exists by the
-     destination's identity rule (a SKU across marketplaces, a picture, a code). Found: bind
-     with an edge instead of minting. Not found: mint. This is the one place compliance looks
-     backward, and it is the hard no to a duplicate mint.
-   - **route**: which destination gear, by election
+     destination's identity rule (a SKU across marketplaces, a picture, a code), reading
+     the foreign id to recognise, never to key on. Found: bind with an edge instead of
+     minting. Not found: mint. This is the one place the loop looks backward, and it is the
+     hard no to a duplicate mint.
+   - **pass**: the value lands as it is
 
-   A standing NO on the entity holds the row in the ledger, visibly, until a landing clears it
-   (Law 8). A NO is never edited away.
+   A pair with no row does not move. The executor never chooses a verb; a missing row is
+   silence, and silence is no movement.
 
-8. **Write.** The scribe writes the row, draws the edge the row names, writes the face. A
+7. **is_diff.** Does the transformed value move the destination's standing. No: it is
+   dropped; a confirmation is not a value, and the clock of the confirmation belongs to the
+   arrival, or to a seen aspect whose is_new word is `always`. Yes: it is an event. Ten then
+   eight: the fold says ten, the xfm makes minus two, is_diff says it moves, minus two lands.
+
+8. **Compliance.** Before the write: may this row land. The standing NOs on the entity, the
+   allocation, or the qualification edge hold the row in the ledger, visibly, until a landing
+   clears it (Law 8). A NO is never edited away.
+
+9. **Write.** The scribe writes the row, draws the edge the row names, writes the face. A
    birth takes its parent from the word on the birth row: `root`, `strip`, or
    `twin_of_parent`. Nothing is transported from the source. The attempt is stamped: one job,
    what landed, what held its standing. A write that did not happen is a run that did not
    pass, visible, stoppable, re-runnable from the package.
 
-9. **Alert.** The hopper fires on the write, on all six tables, carrying the folded standing.
+10. **Alert.** The hopper fires on the write, on all six tables, carrying the folded standing.
    The machine is downstream of the trigger by construction; it is never told.
 
-10. **Consequences.** The machine reads what this landing owes, keyed by the origin SEA:
+11. **Consequences.** The machine reads what this landing owes, keyed by the origin SEA:
     a landing in another gear, an edge, a NO, an outgoing call, a birth. Every consequence is
     a candidate row about what should exist next, and every one re-enters the loop at step 3.
     A landing that owes nothing is the common case, and silence is the right answer.
 
-11. **The exit.** A consequence that is an outgoing call composes the standard package from
+12. **The exit.** A consequence that is an outgoing call composes the standard package from
     the rows; the courier renders and sends; the reply returns through reception to step 1.
 
 There is no inbound and no outbound, no push path and no sweep path, no twin logic separate
@@ -120,7 +129,7 @@ An a_type carries four words:
 - `lands`: where a landing goes, one entry per destination
 - `arrives`: which path in a parcel routed to this passport the SEA sits at
 
-The cross-table carries the fifth word for each pair: the verb, and the xfm row it names.
+The cross-table carries the fifth word for each pair: the ordered verbs, and the xfm row each names.
 
 A passport carries `becomes`, `at`, `id_field`, `many`, `ord_field`, `identity_at`, and the
 parent word. Its cue rows are the identity rules the match verb reads.
