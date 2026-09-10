@@ -70,6 +70,13 @@ One shape, all the way round. A package starts it; every consequence re-enters i
    everything after it run per row inside that job. This is a rule, not an optimisation:
    without it a hundred-line sweep is a hundred jobs.
 
+   Jobs are ordered by the package's own clock, the time the marketplace reported, never
+   by arrival (the quantity ruling of 2026-09-08: a fact beats a preference). Jobs for one
+   tenant and one marketplace run one at a time in that order. That is what makes pre-flight
+   sufficient: a push and a sweep carrying the same new listing are two packages on one
+   stream, the earlier clock mints, the later finds it and binds. There is no mint race to
+   lock against, because there is no concurrency on an identity.
+
 5. **Fold.** The standing of that aspect on that entity, read from the stream. The fold is
    what the pair rule reads: a transform that turns an absolute into a delta needs the
    standing it is measured against. A birth has no fold and skips 5 and 6.
