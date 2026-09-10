@@ -214,12 +214,17 @@ Everything else that exists today, the recognition loop inside resolve, the cue 
 is_new, the election read, the rank and xfm and via logic inside land, the response
 processors, is either a row in this design or gone.
 
+## Ruled
+
+- The machine is **the_machine** (Mike, 2026-09-10).
+- **No family square.** family_uuid and item_uuid on ops_com.entity (family_uuid on ops_cat)
+  are torn down under phase 6; the strip walk is three indexed joins and the parent word
+  makes the strip explicit. A column holding what the parent chain already says is a second
+  home for one fact (Mike, 2026-09-10).
+
 ## Open
 
 - **The replay bound.** A lands row added to a hot aspect replays what already landed; how far
   back is a row, and its shape is not yet said.
-- **The name of the machine.** Provisional.
-- **family_uuid / item_uuid.** The columns exist; family_uuid is the row's own uuid everywhere
-  and item_uuid has never been written. What they mean is a ruling, not a backfill.
 - **The dead routine rows** in the registry that still say gear.alloc: read by nothing,
   brought into spec when touched.
