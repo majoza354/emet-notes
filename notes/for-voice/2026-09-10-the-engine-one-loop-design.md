@@ -18,7 +18,10 @@ is in; it asks the rows.
 
 Every entity row carries `tenant_uuid`, the uuid of the tenant's root entity in its usr gear.
 It is stamped at routing and it is a column, never an aspect, because the tenant wall is a
-WHERE clause on every read.
+WHERE clause on every read. On every tenant-scoped row it is not null, by convention, not by
+schema: the scribe stamps it on every tenant-scoped birth and pre-flight refuses a
+tenant-scoped candidate without one. A gear's own rows, its passports, api calls, fields,
+vocabulary, belong to the gear and carry none.
 
 Two things have two names. The strip, form, item, lot, allocation, is ops. What a
 marketplace holds is a listing, the allocation's twin. A listing's parent is the tenant root;
