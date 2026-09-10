@@ -183,7 +183,12 @@ The five thousand null-fold a_types on harry today are this shape working.
 - **Append only.** A correction is a new row. A duplicate that pre-flight missed is recorded
   and later bound, never merged.
 - **The tenant wall is on the read**, at the grant, on `tenant_uuid`. A cross-tenant leak
-  needs a write that never exists.
+  needs a write that never exists. The write contract is that every reference in a
+  candidate row was obtained by a read the wall allowed: pre-flight resolves an edge's
+  ends, a fact's entity and a birth's parent as the job's tenant, and a uuid the tenant
+  cannot see resolves to nothing and the candidate is refused before the write. The scribe
+  runs as the job's tenant and the policies carry WITH CHECK as the backstop; the gear's
+  own rows are written as the gear, never inside a tenant's job.
 - **The ledger is accountable.** Every write happened inside a run, and the run row says so.
 
 ## The executors that remain
