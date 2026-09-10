@@ -176,6 +176,13 @@ landed. Backfill is a lands row; it costs nothing.
 
 The five thousand null-fold a_types on harry today are this shape working.
 
+The hopper stands on all six tables in every gear, the three administrative gears included,
+and the cross-table decides what a write owes. A write to a_types owes one thing, the
+replay: land what already landed under the new word, from the clock the lands row names;
+a lands row with no clock replays nothing. A write to avs or bom_types owes nothing. No
+pair rule points a gear's vocabulary back at itself. Scoping is rows, never a list of
+tables the trigger skips.
+
 ## What holds the loop
 
 - **Yes unless no.** Nothing waits for permission. A NO row is the only brake, and it is
