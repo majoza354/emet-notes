@@ -147,6 +147,13 @@ lot is a NO on its allocation. Nothing is deleted, and no edge goes missing to s
 The boms table is the join table. Lots × marketplaces, at most ten marketplaces per tenant,
 read by the walk everything else uses.
 
+An allocation's identity is (tenant, lot, marketplace): the lot is its parent, the
+marketplace gear's uuid is its native_id, the tenant is on the row. Pre-flight for a
+strip-born entity is (tenant, parent, e_type, native_id), one index lookup, so a second
+allocation for the same lot and marketplace trips and is never minted. Today an allocation's
+native_id is a random uuid and 56 lot-and-marketplace pairs carry two; that is the shape being
+torn down.
+
 ## Land everything
 
 Every field that arrives lands in the gear it arrived in, whether or not anyone wants it yet.
