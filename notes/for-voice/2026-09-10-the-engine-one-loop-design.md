@@ -120,6 +120,12 @@ One shape, all the way round. A package starts it; every consequence re-enters i
     a candidate row about what should exist next, and every one re-enters the loop at step 3.
     A landing that owes nothing is the common case, and silence is the right answer.
 
+    A job is done when its own candidate rows are written or dropped. Every consequence is
+    its own job, stamped with the run it came from, so the chain reads back to the package
+    without the package's job staying open through calls and replies. A cycle cannot form:
+    the pair rule is origin to destination, and a pair whose origin and destination are the
+    same aspect is a row nobody writes.
+
 12. **The exit.** A consequence that is an outgoing call composes the standard package from
     the rows; the courier renders and sends; the reply returns through reception to step 1.
 
