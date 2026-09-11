@@ -14,3 +14,6 @@ KOSHER with the mashgiach on cut 4. Astra's fourth read would not bless: a tenan
 ## Rulings today
 - Enrichment runs as subagent swarms on the Max plan, 02:00–06:00, no API calls; the enrichment charter's "API, not subscription" line is overruled and needs rewriting.
 - The enrichment desk has no Agent tool (desk rule), so a swarm is driven by Edmund's session.
+
+## Update, ~09:30 EDT — 1478 is LIVE
+The mashgiach blessed cut 4 (after refusing cut 3 on Law 4: the leaf category now lands as the category entity's uuid under a new aspect `ebay_category_uuid`, a_type 263). Deployed by the pipe: 9,027 facts on 3,061 militaria forms — title_80 3,059, category 3,023, 2,945 evidenced vocabulary facts. Nothing minted on eBay. Every deployed migration now lives in `sql/migrations_archived` (Mike's word); `sql/migrations` holds only undeployed files. The enrichment charter is rewritten for the Max plan. Still open for Mike: what marks a MilAntTor Woo product "archived".
