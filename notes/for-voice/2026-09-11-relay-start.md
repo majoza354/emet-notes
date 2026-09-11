@@ -17,3 +17,6 @@ KOSHER with the mashgiach on cut 4. Astra's fourth read would not bless: a tenan
 
 ## Update, ~09:30 EDT — 1478 is LIVE
 The mashgiach blessed cut 4 (after refusing cut 3 on Law 4: the leaf category now lands as the category entity's uuid under a new aspect `ebay_category_uuid`, a_type 263). Deployed by the pipe: 9,027 facts on 3,061 militaria forms — title_80 3,059, category 3,023, 2,945 evidenced vocabulary facts. Nothing minted on eBay. Every deployed migration now lives in `sql/migrations_archived` (Mike's word); `sql/migrations` holds only undeployed files. The enrichment charter is rewritten for the Max plan. Still open for Mike: what marks a MilAntTor Woo product "archived".
+
+## Update, ~10:15 EDT — 1477 is LIVE
+Mike ran the whiteboard at 14:14 UTC. Verified on harry: resolve takes the job's tenant, land elects per qualification, TorBri's two qualifications stand, the recognition index is rebuilt. The blessing is on the ledger; 9f74c62d applied in the stamping commit; the file archived. No live lot elects until phase 6 re-parents lots under their items. Next on the engine: phase 3.
