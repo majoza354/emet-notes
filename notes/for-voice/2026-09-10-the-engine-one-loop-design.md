@@ -23,7 +23,7 @@ schema: the scribe stamps it on every tenant-scoped birth and pre-flight refuses
 tenant-scoped candidate without one. A gear's own rows, its passports, api calls, fields,
 vocabulary, belong to the gear and carry none.
 
-Two things have two names. The strip, form, item, lot, allocation, is ops. What a
+Two things have two names. The strip, form, item, lot, allocation, is ops (FILAS below). What a
 marketplace holds is a listing, the allocation's twin. A listing's parent is the tenant root;
 an allocation's is the lot; a lot's is the item; an item's is the form; a line's is the twin of
 its order. Each gear states its own parentage from what it knows locally.
@@ -149,23 +149,43 @@ parent word. Its cue rows are the identity rules the match verb reads.
 
 ## Election
 
-For every tenant, every lot gets one allocation per qualified marketplace, and the edge
-`lot_has_allocation` is what says so. The marketplace listing is the allocation's twin.
+A **qualification** is a row in the tenant's usr gear, e_type `qualification`, one per
+(division, marketplace) the tenant sells in: parent the tenant root, identity (tenant,
+division, marketplace). It is the tenant's standing choice, and it carries what an edge cannot:
+a standing NO to turn it off, the clock it was turned on, and later the dials that belong to
+that pair, a price rule for this fandom on this shop, a shipping profile.
 
-Qualification is division × marketplace, one edge per pair in the tenant's gear. A lot's
-allocations are the consequences of that edge: born with the lot, appended when a marketplace
-comes on line. Turning a marketplace off is a NO on the qualification edge; a refusal for one
-lot is a NO on its allocation. Nothing is deleted, and no edge goes missing to say no.
+When a lot is born, the pair rule on its birth reads the tenant's qualifications for the lot's
+division, every one not under a NO, and mints one allocation each: identity (tenant, lot,
+marketplace), the lot as parent, the marketplace as the third parent. The allocation is the
+qualification applied to one lot. A second run finds them at pre-flight and mints nothing.
 
-The boms table is the join table. Lots × marketplaces, at most ten marketplaces per tenant,
-read by the walk everything else uses.
+Turning a marketplace off is a NO on the qualification, and what follows is a consequence, not
+a teardown: the allocation stands, the NO lands on it, and the listing's end call goes out the
+way any NO on an allocation ends a listing. Nothing is un-elected and nothing is deleted.
 
-An allocation's identity is (tenant, lot, marketplace): the lot is its parent, the
-marketplace gear's uuid is its native_id, the tenant is on the row. Pre-flight for a
-strip-born entity is (tenant, parent, e_type, native_id), one index lookup, so a second
-allocation for the same lot and marketplace trips and is never minted. Today an allocation's
-native_id is a random uuid and 56 lot-and-marketplace pairs carry two; that is the shape being
-torn down.
+There is no `lot_has_allocation` edge. The allocation's parent column is the lot, and a walk
+up the strip is a parent hop. Edges are for what parentage cannot say: `has_twin` across the
+wall, an order line to the allocation it sold.
+
+## The five rungs, FILAS
+
+Three spheres, DIV, USR, MP, and each rung is the meet of more of them (docs/filas_erd.mmd):
+
+| rung | needs | parents |
+|---|---|---|
+| form | DIV | the division root |
+| item | form | the form |
+| lot | item + USR | the item, across the wall into the division gear; the tenant |
+| allocation | lot + MP | the lot; the tenant by descent; the marketplace |
+| listing | the allocation, seen from the MP | the USR root in the marketplace gear; twin of the allocation |
+
+Forms and items are the catalog of the fandom, not tenant-scoped: they live in the division
+gear and carry the gear's own uuid as tenant. The lot is the first tenant-scoped rung, and its
+native_id is the SKU, the cross-marketplace code, so an inbound listing carrying a SKU resolves
+to its lot at pre-flight. The strip word crosses one wall, lot to item, and no other. The
+allocation's three parents are its identity and its whole meaning; the marketplace parent wants
+a column of its own, `mp_uuid`, rather than riding as the native_id.
 
 ## Land everything
 
